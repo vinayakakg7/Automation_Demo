@@ -1,14 +1,6 @@
-variable "aws_access_key" {
-  default = "${var.AWS_ACCESS_KEY}"
-}
-
-variable "aws_secret_key" {
-  default = "${var.AWS_SECRET_KEY}"
-}
-
 provider "aws" {
-  access_key = var.aws_access_key
-  secret_key = var.aws_secret_key
+  access_key = var.AWS_ACCESS_KEY
+  secret_key = var.AWS_SECRET_KEY
 }
 
 data "aws_security_group" "example" {
