@@ -11,8 +11,8 @@ pipeline {
 
       environment {
         // Initialize the AWS access key and secret key variables as empty strings
-        AWS_ACCESS_KEY = ""
-        AWS_SECRET_KEY = ""
+        aws_access_key = ""
+        aws_secret_key = ""
       }
       steps {
         // Retrieve the AWS access key and secret key from the Jenkins credentials store
