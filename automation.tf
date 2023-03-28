@@ -1,5 +1,5 @@
 provider "aws" {
-  shared_credentials_file = "C:\Users\VinayakaKG\.aws"
+  shared_credentials_file = "C:/Users/VinayakaKG/.aws"
   profile                = "aws"
   region                 = "ap-south-1"
 }
