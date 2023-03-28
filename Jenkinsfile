@@ -20,7 +20,8 @@ pipeline {
           // Initialize the Terraform working directory
           bat 'terraform init'
           bat 'terraform plan'
-          bat 'terraform apply --auto-approve'
+         // bat 'terraform apply --auto-approve'
+          bat 'terraform destroy --auto-approve'
           // Generate a Terraform plan with the AWS access key and secret key as variables
         //  bat 'terraform plan -var "aws_access_key=$AWS_ACCESS_KEY" -var "aws_secret_key=$AWS_SECRET_KEY"'
         }
