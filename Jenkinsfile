@@ -24,7 +24,7 @@ pipeline {
       if (terra == 'destroy') {
         echo 'Destroying infrastructure...'
         bat "terraform destroy --auto-approve"
-        currentBuild.result = 'ABORTED' // Stop the pipeline after the destroy command
+        error "Aborting the pipeline after destroying infrastructure" // Stop the pipeline after the destroy command
       } else {
         echo 'Applying infrastructure...'
         bat "terraform apply --auto-approve"
