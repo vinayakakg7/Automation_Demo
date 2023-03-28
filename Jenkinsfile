@@ -20,6 +20,24 @@ pipeline {
             bat "terraform ${terra} --auto-approve"
     }
   }
+  stage('Build and test using Maven') {
+            steps {
+                bat 'mvn clean install -DskipTests=true'
+            }
+        }
+ //    stage("deploy-dev"){
+  //      steps{
+   //             sshagent(['deploy_User']) { 
+//
+  //                      public_ip=$(terraform output public_ip)
+	//					bat  "scp -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/demo/springbootApp.jar ec2-user@public_ip: /usr/local/tomcat9/webapps/ "
+	//					bat  "ssh -o StrictHostKeyChecking=no ec2-user@public_ip tomcatdown"
+	//					bat  "ssh -o StrictHostKeyChecking=no ec2-user@public_ip tomcatup" 
+
+          
+	//				}
+	//			}
+	//		}  
 }
-  }
+}
     
