@@ -43,9 +43,9 @@ pipeline {
                 def public_ip = sh(returnStdout: true, script: 'terraform output public_ip').trim()
                 sshagent(['Deploy_Auto']) {
               //public_ip= $(terraform output public_ip)
-				bat  "scp -o StrictHostKeyChecking=no C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\Automation_Demo\\target\\springbootApp.jar ec2-user@public_ip: /usr/local/tomcat9/webapps/ "
-				bat  "ssh -o StrictHostKeyChecking=no ec2-user@public_ip tomcatdown"
-				bat  "ssh -o StrictHostKeyChecking=no ec2-user@public_ip tomcatup" 
+				//sh  "scp -o StrictHostKeyChecking=no C:/ProgramData/Jenkins/.jenkins/workspace/Automation_Demo/target/springbootApp.jar ec2-user@public_ip: /usr/local/tomcat9/webapps/ "
+				      bat "ssh -o StrictHostKeyChecking=no ec2-user@public_ip tomcatdown"
+				      bat  "ssh -o StrictHostKeyChecking=no ec2-user@public_ip tomcatup" 
 
           
 					}
