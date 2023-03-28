@@ -12,7 +12,7 @@ pipeline {
           // Initialize the Terraform working directory
           bat 'terraform init'
           bat 'terraform plan'
-          bat ("terraform $(action) --auto-approve")
+          bat ("terraform ${action} --auto-approve")
          // bat 'terraform apply --auto-approve'
          // bat 'terraform destroy --auto-approve'
         }
