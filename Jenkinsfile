@@ -15,14 +15,14 @@ pipeline {
     }
 
     stage('Terraform Plan') {
-        withCredentials([<object of type com.cloudbees.jenkins.plugins.awscredentials.AmazonWebServicesCredentialsBinding>]) {
-            bat 'terraform plan'
+      steps {
+        bat 'terraform plan'
      }
     }
 
     stage('Terraform Apply') {
-            withCredentials([<object of type com.cloudbees.jenkins.plugins.awscredentials.AmazonWebServicesCredentialsBinding>]) {
-                bat 'terraform apply --auto-approve'
+        steps {
+           bat 'terraform apply --auto-approve'
       }
     }
   }
