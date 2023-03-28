@@ -14,16 +14,13 @@ pipeline {
       }
     }
 
-    stage('Terraform Plan') {
-      steps {
-        bat 'terraform plan'
-     }
-    }
-
     stage('Terraform Apply') {
         steps {
-           bat 'terraform apply --auto-approve'
-      }
+            withCredentials([usernamePassword(credentialsId: 'aws_cred', passwordVariable: 'AWS_SECRET_KEY', usernameVariable: 'AWS_ACCESS_KEY')]) {
+                    bat 'terraform plan'
+                    bat 'terraform apply --auto-approve'
+            }
+        }
     }
   }
 }
