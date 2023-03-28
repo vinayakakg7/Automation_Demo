@@ -1,5 +1,7 @@
 provider "aws" {
   region = "ap-south-1"
+  access_key = "AWS_CRED"
+  secret_key = "AWS_CRED"
 }
 
 data "aws_security_group" "example" {
