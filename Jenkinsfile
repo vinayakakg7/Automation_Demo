@@ -12,7 +12,12 @@ pipeline {
           // Initialize the Terraform working directory
           bat 'terraform init'
           bat 'terraform plan'
-          bat 'terraform ${'terra'} --auto-approve'
+        }
+      }
+      stage('Terraform Script Run') {
+      steps {
+          echo "terraform script run --> $(terra)"
+          bat 'terraform ${terra} --auto-approve'
          // bat 'terraform apply --auto-approve'
          // bat 'terraform destroy --auto-approve'
         }
