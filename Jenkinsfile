@@ -14,12 +14,24 @@ pipeline {
           bat 'terraform plan'
         }
       }
-      stage('Terraform action') {
-        steps {
-            echo 'terraform action --> ${terra}'
-            bat "terraform ${terra} --auto-approve"
+    stage('Terraform action') {
+  steps {
+    script {
+      // Get the value of the "terra" parameter
+      def terra = params.terra
+
+      // Check if the "terra" parameter is set to "destroy"
+      if (terra == 'destroy') {
+        echo 'Destroying infrastructure...'
+        bat "terraform destroy --auto-approve"
+        currentBuild.result = 'ABORTED' // Stop the pipeline after the destroy command
+      } else {
+        echo 'Applying infrastructure...'
+        bat "terraform apply --auto-approve"
+      }
     }
   }
+}
   stage('Build and test using Maven') {
             steps {
                 bat 'mvn clean install -DskipTests=true'
