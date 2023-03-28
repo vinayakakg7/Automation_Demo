@@ -8,11 +8,11 @@ pipeline {
       }
     }
     stage('Terraform Plan') {
-        
+
       environment {
         // Initialize the AWS access key and secret key variables as empty strings
         AWS_ACCESS_KEY = ""
-        AWS_SECRET_ACCESS_KEY = ""
+        AWS_SECRET_KEY = ""
       }
       steps {
         // Retrieve the AWS access key and secret key from the Jenkins credentials store
