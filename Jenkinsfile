@@ -17,13 +17,15 @@ pipeline {
       stage('Terraform action') {
         steps {
             echo 'terraform action --> ${terra}'
-             if (isUnix()) {
-                sh "terraform ${terra} --auto-approve"
-                 } else {
-                     bat "terraform ${terra} --auto-approve"
+            if (isUnix()) {
+                    sh "terraform ${terra} --auto-approve"
+             } 
+             else {
+                bat "terraform ${terra} --auto-approve"
     }
   }
 }
+
 
       }
     }
