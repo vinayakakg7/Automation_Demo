@@ -1,6 +1,5 @@
 provider "aws" {
   region = "ap-south-1"
-  profile = "AWS_CRED"
 }
 
 data "aws_security_group" "example" {
@@ -17,7 +16,7 @@ resource "aws_instance" "Automation" {
 
   tags = {
     Name = "Automation_Server"
-    OS   = "CentOS"
+    OS   = "Amazon_Linux"
   }
 }
 
