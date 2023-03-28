@@ -1,17 +1,7 @@
-variable "aws_access_key" {
-  type    = string
-  default = ""
-}
-
-variable "aws_secret_key" {
-  type    = string
-  default = ""
-}
-
 provider "aws" {
-  access_key = var.aws_access_key
-  secret_key = var.aws_secret_key
-  region     = "ap-south-1"
+  shared_credentials_file = "C:\Users\VinayakaKG\.aws"
+  profile                = "aws"
+  region                 = "ap-south-1"
 }
 
 data "aws_security_group" "example" {
