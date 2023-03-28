@@ -1,10 +1,5 @@
 pipeline {
   agent any
-  environment {
-  AWS_ACCESS_KEY = "${credentials('aws_cred').username}"
-  AWS_SECRET_KEY = "${credentials('aws_cred').password}"
-}
-
   stages {
     stage('Checkout') {
       steps {
@@ -12,10 +7,20 @@ pipeline {
       }
     }
     stage('Terraform Plan') {
+      environment {
+        // Initialize the AWS access key and secret key variables as empty strings
+        AWS_ACCESS_KEY = ""
+        AWS_SECRET_ACCESS_KEY = ""
+      }
       steps {
-        bat 'terraform init'
-        bat 'terraform plan -var "aws_access_key=${AWS_ACCESS_KEY}" -var "aws_secret_key=${AWS_SECRET_KEY}"'
-		bat 'terraform apply --auto-approve -var "aws_access_key=${AWS_ACCESS_KEY}" -var "aws_secret_key=${AWS_SECRET_KEY}"'
+        // Retrieve the AWS access key and secret key from the Jenkins credentials store
+        withCredentials([usernamePassword(credentialsId: 'aws_cred', passwordVariable: 'AWS_SECRET_KEY', usernameVariable: 'AWS_ACCESS_KEY')]) {
+          // Initialize the Terraform working directory
+          bat 'terraform init'
+          // Generate a Terraform plan with the AWS access key and secret key as variables
+          bat 'terraform plan -var "aws_access_key=${AWS_ACCESS_KEY}" -var "aws_secret_key=${AWS_SECRET_KEY}"'
+        }
+      }
       }
     }
   }
