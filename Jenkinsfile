@@ -15,12 +15,15 @@ pipeline {
         }
       }
       stage('Terraform action') {
-      steps {
-          echo 'terraform action --> $(terra)'
-          bat '("terraform '${terra}' --auto-approve)"'
-         // bat 'terraform apply --auto-approve'
-         // bat 'terraform destroy --auto-approve'
-        }
-      }
+        steps {
+            echo 'terraform action --> ${terra}'
+             if (isUnix()) {
+                sh "terraform ${terra} --auto-approve"
+                 } else {
+                     bat "terraform ${terra} --auto-approve"
+    }
+  }
+}
+
       }
     }
