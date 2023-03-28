@@ -1,9 +1,9 @@
 variable "aws_access_key" {
-  default = "${env.AWS_ACCESS_KEY}"
+  default = "${var.AWS_ACCESS_KEY}"
 }
 
 variable "aws_secret_key" {
-  default = "${env.AWS_SECRET_KEY}"
+  default = "${var.AWS_SECRET_KEY}"
 }
 
 provider "aws" {
