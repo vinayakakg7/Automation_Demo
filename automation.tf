@@ -1,8 +1,16 @@
 provider "aws" {
-  region = "ap-south-1"
-  access_key = "AWS_ACCESS_KEY"
-  secret_key = "AWS_SECRET_KEY"
+  access_key = "${var.aws_access_key}"
+  secret_key = "${var.aws_secret_key}"
 }
+
+variable "aws_access_key" {
+  default = "${env.AWS_ACCESS_KEY}"
+}
+
+variable "aws_secret_key" {
+  default = "${env.AWS_SECRET_KEY}"
+}
+
 
 data "aws_security_group" "example" {
   id = "sg-061d334e74d54ff97"

@@ -1,5 +1,9 @@
 pipeline {
   agent any
+ //  environment {
+   // AWS_ACCESS_KEY = "credentials('aws-creds').username"
+    //AWS_SECRET_KEY = "credentials('aws-creds').password"
+ // }
 
   stages {
     stage('Checkout') {
