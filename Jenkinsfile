@@ -58,14 +58,14 @@ post {
             subject: "Build failed in ${currentBuild.fullDisplayName}",
             body: """${env.JOB_NAME} build #${env.BUILD_NUMBER} has failed.
                   Please investigate and fix the issue."""
-            attachLog: true
+            attachLog()
             }
         success {
             mail to: 'vinayakakg7@gmail.com , vinayaka.kg@cyqurex.com',
             subject: "Build successful in ${currentBuild.fullDisplayName}",
             body: """${env.JOB_NAME} build #${env.BUILD_NUMBER} has succeeded.
                    Congratulations!"""
-            attachLog: true
+            attachLog()
     }
   }   
 }
