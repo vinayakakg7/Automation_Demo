@@ -56,15 +56,17 @@ post {
         failure {
             mail to: 'vinayakakg7@gmail.com , vinayaka.kg@cyqurex.com',
             subject: "Build failed in ${currentBuild.fullDisplayName}",
+         //   emailext attachLog: true, attachmentsPattern: 'generatedFile.txt',
             body: """${env.JOB_NAME} build #${env.BUILD_NUMBER} has failed.
-                  Please investigate and fix the issue."""
+                  Please investigate and fix the issue\n More info at: ${env.BUILD_URL}"""
             attachLog()
             }
         success {
             mail to: 'vinayakakg7@gmail.com , vinayaka.kg@cyqurex.com',
             subject: "Build successful in ${currentBuild.fullDisplayName}",
+          //  emailext attachLog: true, attachmentsPattern: 'generatedFile.txt',
             body: """${env.JOB_NAME} build #${env.BUILD_NUMBER} has succeeded.
-                   Congratulations!"""
+                   Congratulations!\n More info at: ${env.BUILD_URL}""" 
             attachLog()
     }
   }   
