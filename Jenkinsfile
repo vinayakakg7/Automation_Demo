@@ -52,6 +52,7 @@ pipeline {
      }
 }
 }
+
 post{     
         failure{
             mail to: 'vinayakakg7@gmail.com',
