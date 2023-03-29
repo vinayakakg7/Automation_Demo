@@ -37,19 +37,19 @@ pipeline {
                 bat 'mvn clean install -DskipTests=true'
             }
         }
-    stage("deploy-dev"){
-        steps {
-             script {
-                def public_ip = bat(returnStdout: true, script: 'terraform output public_ip').trim()
-                sshagent(['Deploy_Auto']) {
+//    stage("deploy-dev"){
+ //       steps {
+ //            script {
+  //              def public_ip = bat(returnStdout: true, script: 'terraform output public_ip').trim()
+ //               sshagent(['Deploy_Auto']) {
               //public_ip= $(terraform output public_ip)
 				//sh  "scp -o StrictHostKeyChecking=no C:/ProgramData/Jenkins/.jenkins/workspace/Automation_Demo/target/springbootApp.jar ec2-user@public_ip: /usr/local/tomcat9/webapps/ "
-				        bat   "ssh -o StrictHostKeyChecking=no ec2-user@public_ip tomcatdown"
-				        bat   "ssh -o StrictHostKeyChecking=no ec2-user@public_ip tomcatup"
-					}
-				}
-			}  
-     }
+//				        bat   "ssh -o StrictHostKeyChecking=no ec2-user@public_ip tomcatdown"
+//				        bat   "ssh -o StrictHostKeyChecking=no ec2-user@public_ip tomcatup"
+//					}
+//				}
+//			}  
+ //    }
 }
 
 post {     
