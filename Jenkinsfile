@@ -15,37 +15,37 @@ pipeline {
         }
       }
     stage('Terraform action') {
-  steps {
-    script {
+      steps {
+        script {
       // Get the value of the "terra" parameter
-      def terra = params.terra
+            def terra = params.terra
 
       // Check if the "terra" parameter is set to "destroy"
-      if (terra == 'destroy') {
-        echo 'Destroying infrastructure...'
-        bat "terraform destroy --auto-approve"
-        error "Aborting the pipeline after destroying infrastructure" // Stop the pipeline after the destroy command
-      } else {
-        echo 'Applying infrastructure...'
-        bat "terraform apply --auto-approve"
-      }
-    }
-  }
-}
-  stage('Build and test using Maven') {
+                if (terra == 'destroy') {
+                      echo 'Destroying infrastructure...'
+                      bat "terraform destroy --auto-approve"
+                      error "Aborting the pipeline after destroying infrastructure" // Stop the pipeline after the destroy command
+                    } else {
+                          echo 'Applying infrastructure...'
+                          bat "terraform apply --auto-approve"
+                        }
+                      }
+                    }
+                  }
+    stage('Build and test using Maven') {
             steps {
                 bat 'mvn clean install -DskipTests=true'
             }
         }
-     stage("deploy-dev"){
+    stage("deploy-dev"){
         steps {
              script {
                 def public_ip = bat(returnStdout: true, script: 'terraform output public_ip').trim()
                 sshagent(['Deploy_Auto']) {
               //public_ip= $(terraform output public_ip)
 				//sh  "scp -o StrictHostKeyChecking=no C:/ProgramData/Jenkins/.jenkins/workspace/Automation_Demo/target/springbootApp.jar ec2-user@public_ip: /usr/local/tomcat9/webapps/ "
-				      bat "ssh -o StrictHostKeyChecking=no ec2-user@public_ip tomcatdown"
-				      bat  "ssh -o StrictHostKeyChecking=no ec2-user@public_ip tomcatup" 
+				        bat   "ssh -o StrictHostKeyChecking=no ec2-user@public_ip tomcatdown"
+				        bat   "ssh -o StrictHostKeyChecking=no ec2-user@public_ip tomcatup" 
 
           
 					}
