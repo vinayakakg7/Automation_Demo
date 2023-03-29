@@ -51,7 +51,6 @@ pipeline {
 			}  
      }
 }
-}
 
 post {     
         failure {
@@ -67,3 +66,4 @@ post {
                    Congratulations!"""
     }
   }   
+}
