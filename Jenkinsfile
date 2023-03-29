@@ -45,9 +45,7 @@ pipeline {
               //public_ip= $(terraform output public_ip)
 				//sh  "scp -o StrictHostKeyChecking=no C:/ProgramData/Jenkins/.jenkins/workspace/Automation_Demo/target/springbootApp.jar ec2-user@public_ip: /usr/local/tomcat9/webapps/ "
 				        bat   "ssh -o StrictHostKeyChecking=no ec2-user@public_ip tomcatdown"
-				        bat   "ssh -o StrictHostKeyChecking=no ec2-user@public_ip tomcatup" 
-
-          
+				        bat   "ssh -o StrictHostKeyChecking=no ec2-user@public_ip tomcatup"
 					}
 				}
 			}  
